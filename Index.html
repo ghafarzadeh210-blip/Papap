@@ -1,671 +1,670 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آوای زریاب | آموزش موسیقی</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* متغیرهای رنگ */
-        :root {
-            --primary-color: #8B4513; /* قهوه‌ای اصلی لوگو */
-            --secondary-color: #D2691E; /* قهوه‌ای روشن‌تر */
-            --accent-color: #FFD700; /* طلایی برای تأکید */
-            --light-color: #F5F5DC; /* بژ روشن */
-            --dark-color: #3E2723; /* قهوه‌ای تیره */
-            --text-color: #333;
-            --white: #fff;
-        }
-        
-        /* ریست استایل‌ها */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        /* هدر و نویگیشن */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-            color: var(--white);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-align: center;
-            background: linear-gradient(45deg, var(--accent-color), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo-subtitle {
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: -5px;
-            color: var(--accent-color);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 1.5rem;
-        }
-        
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        /* بخش‌های اصلی */
-        section {
-            padding: 5rem 1rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-        }
-        
-        /* صفحه اصلی */
-        #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* بخش اساتید */
-        .teachers-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .teacher-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .teacher-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .teacher-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        
-        .teacher-info {
-            padding: 1.5rem;
-        }
-        
-        .teacher-name {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .teacher-specialty {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        
-        .teacher-description {
-            margin-bottom: 1.5rem;
-        }
-        
-        .teacher-gallery-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .teacher-gallery-btn:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        /* گالری */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 200px;
-            cursor: pointer;
-        }
-        
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img, .gallery-item:hover video {
-            transform: scale(1.1);
-        }
-        
-        /* بخش تاریخچه */
-        .history-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .history-section {
-            margin-bottom: 2rem;
-        }
-        
-        .history-title {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        /* فوتر */
-        footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-            color: var(--white);
-            padding: 3rem 1rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            margin-top: 2rem;
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-        
-        /* مدال برای نمایش گالری */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: var(--white);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-        
-        /* انیمیشن‌ها */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease;
-        }
-        
-        /* استایل‌های ریسپانسیو */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .teachers-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>آوای زریاب — آکادمی موسیقی</title>
+<style>
+  /* ============================
+     تنظیمات رنگ سازمانی
+     - آبی تیره: --brand-blue
+     - طلایی: --brand-gold
+     ============================ */
+  :root{
+    --brand-blue: #0f2b3f;   /* آبی تیره (قابل تغییر) */
+    --brand-gold: #cda84a;   /* طلایی */
+    --bg: #000;              /* پس‌زمینه مشکی (مطابق لوگو) */
+    --muted: #7b8a98;
+    --glass: rgba(255,255,255,0.03);
+  }
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:var(--bg);
+    font-family: "Vazirmatn", "Tahoma", sans-serif;
+    -webkit-font-smoothing:antialiased;
+    color:#e6eef6;
+    -webkit-text-size-adjust:100%;
+  }
+
+  /* موبایل-اول: یک ستونی و بزرگنمایی لوگو */
+  .container{
+    max-width:980px;
+    margin:0 auto;
+    padding:18px;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 4px;
+  }
+
+  .logo-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .logo{
+    width:86px;
+    height:86px;
+    object-fit:contain;
+    border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    padding:6px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.6);
+    border:2px solid rgba(255,255,255,0.03);
+  }
+
+  .brand-title{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    line-height:1;
+  }
+  .brand-title h1{
+    margin:0;
+    font-size:18px;
+    color:var(--brand-gold);
+    letter-spacing:0.6px;
+  }
+  .brand-title p{
+    margin:0;
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  /* hero */
+  .hero{
+    margin-top:6px;
+    padding:16px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border-radius:14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+
+  .hero .big-logo{
+    width:120px;
+    height:120px;
+    border-radius:12px;
+    object-fit:contain;
+    border:3px solid rgba(255,255,255,0.02);
+    background:transparent;
+  }
+  .hero .intro{
+    flex:1;
+    font-size:13px;
+    color:#dfeaf6;
+  }
+  .hero .cta{
+    margin-top:10px;
+    display:flex;
+    gap:8px;
+  }
+  .btn{
+    background:var(--brand-gold);
+    color:var(--brand-blue);
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:13px;
+    box-shadow:0 6px 18px rgba(205,168,74,0.12);
+  }
+  .btn.secondary{
+    background:transparent;
+    color:#cfe6ff;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+
+  /* navigation small */
+  nav{
+    margin-top:12px;
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    padding-bottom:6px;
+  }
+  nav a{
+    white-space:nowrap;
+    font-size:13px;
+    padding:8px 10px;
+    border-radius:10px;
+    color:var(--muted);
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,0.02);
+    background:var(--glass);
+  }
+  nav a.active{
+    background:linear-gradient(90deg, rgba(205,168,74,0.14), rgba(15,43,63,0.06));
+    color:var(--brand-gold);
+    font-weight:700;
+  }
+
+  /* content sections */
+  section{
+    margin-top:14px;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  }
+  h2{
+    margin:4px 0 10px 0;
+    color:var(--brand-gold);
+    font-size:15px;
+  }
+  p{ color:#dfeaf6; font-size:13px; line-height:1.55; margin:0 0 10px 0; }
+
+  /* teacher card */
+  .teachers{
+    display:grid;
+    gap:12px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width:720px){
+    .teachers{ grid-template-columns: 1fr; }
+    .logo{ width:70px; height:70px }
+    .hero .big-logo{ width:100px; height:100px; }
+  }
+
+  .teacher{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:10px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .teacher .avatar{
+    width:68px;
+    height:68px;
+    border-radius:10px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .teacher .meta{ flex:1; }
+  .teacher h3{ margin:0; font-size:14px; color:#e9f6ff; }
+  .teacher small{ color:var(--muted); }
+
+  .open-profile{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.03);
+    color:#cfe6ff;
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:12px;
+  }
+
+  /* gallery */
+  .gallery{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    padding-bottom:8px;
+  }
+  .thumb{
+    min-width:140px;
+    height:100px;
+    border-radius:10px;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 8px 26px rgba(0,0,0,0.6);
+    border:2px solid rgba(255,255,255,0.02);
+    position:relative;
+    flex-shrink:0;
+  }
+  .thumb .play{
+    position:absolute;
+    left:8px; bottom:8px;
+    background:rgba(0,0,0,0.5);
+    border-radius:8px;
+    padding:6px;
+    font-size:12px;
+  }
+
+  /* lightbox */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.85);
+    z-index:9999;
+  }
+  .lightbox.active{ display:flex; }
+  .lightbox .inner{
+    width:92%;
+    max-width:980px;
+    border-radius:12px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+  .lightbox img, .lightbox video{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .close-light{
+    position:absolute;
+    top:18px; left:18px;
+    background:var(--brand-gold);
+    color:var(--brand-blue);
+    border:none;
+    padding:10px 12px;
+    border-radius:12px;
+    font-weight:700;
+    z-index:10001;
+  }
+
+  /* admin/panel (visible toggle) */
+  .admin{
+    margin-top:12px;
+    padding:10px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    font-size:13px;
+    color: #dbeeff;
+  }
+  .muted{ color:var(--muted); font-size:12px; }
+
+  footer{
+    margin:18px 0 40px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  /* subtle footer shadow */
+  .shadow-low{ box-shadow:0 10px 40px rgba(0,0,0,0.6); }
+
+</style>
 </head>
 <body>
-    <!-- هدر -->
-    <header>
-        <div class="logo-container">
-            <div>
-                <div class="logo">SISI</div>
-                <div class="logo-subtitle">MUSIC ACADEMY</div>
-            </div>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">صفحه اصلی</a></li>
-                <li><a href="#teachers">اساتید</a></li>
-                <li><a href="#gallery">گالری هنرجویان</a></li>
-                <li><a href="#history">تاریخچه گیتار</a></li>
-                <li><a href="#contact">تماس با ما</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="container">
+  <header>
+    <div class="logo-wrap">
+      <!-- ------------- لوگو -------------
+           لطفاً فایل لوگو را کنار این فایل بگذارید و نام آن را logo.png بگذارید.
+           اگر نام یا مسیر دیگری دارید، در تگ img زیر src را تغییر دهید.
+      -->
+      <img class="logo" id="siteLogo" src="logo.png" alt="لوگو آوای زریاب" onerror="this.style.display='none'">
+      <div class="brand-title">
+        <h1>آوای زریاب</h1>
+        <p>آکادمی موسیقی — Gitaar & آواز</p>
+      </div>
+    </div>
+  </header>
 
-    <!-- صفحه اصلی -->
-    <section id="home">
-        <div class="hero-content fade-in">
-            <h1 class="hero-title">آکادمی موسیقی آوای زریاب</h1>
-            <p class="hero-subtitle">مرکز تخصصی آموزش گیتار و آواز با اساتید مجرب</p>
-            <a href="#teachers" class="cta-button">مشاهده اساتید</a>
+  <main>
+    <section class="hero">
+      <img class="big-logo" src="logo.png" alt="لوگو بزرگ" onerror="this.style.display='none'">
+      <div class="intro">
+        <strong style="color:var(--brand-gold);font-size:15px;">آکادمی آوای زریاب</strong>
+        <p>مرکز آموزش و پرورش موسیقی با تمرکز بر ساز گیتار و آواز — دوره‌ها، مربیان حرفه‌ای، گالری‌های شخصی اساتید و نمایش آثار هنرجویان.</p>
+        <div class="cta">
+          <button class="btn" onclick="scrollToSection('teachers')">معرفی اساتید</button>
+          <button class="btn secondary" onclick="scrollToSection('history')">تاریخچه گیتار</button>
         </div>
+      </div>
     </section>
 
-    <!-- بخش اساتید -->
+    <nav id="topNav">
+      <a href="#history" onclick="scrollToSection('history');return false;">تاریخچه</a>
+      <a href="#teachers" onclick="scrollToSection('teachers');return false;" class="active">اساتید</a>
+      <a href="#students" onclick="scrollToSection('students');return false;">گالری هنرجویان</a>
+      <a href="#works" onclick="scrollToSection('works');return false;">آثار هفته</a>
+      <a href="#admin" onclick="scrollToSection('admin');return false;">نحوه آپلود</a>
+    </nav>
+
+    <!-- تاریخچه و تحلیل (از متن کاربر) -->
+    <section id="history">
+      <h2>🎸 تاریخچه و تحلیل ساز گیتار</h2>
+      <p><strong>پیدایش تاریخی گیتار</strong><br>
+      ساز گیتار، یکی از پرنفوذترین سازهای زهی در تاریخ موسیقی، ریشه‌ای چند هزار ساله دارد. نمونه‌های اولیه آن در تمدن‌های باستانی مانند سومر، مصر، ایران و یونان دیده شده‌اند. در ایران، سازهایی چون تنبور و بربط شباهت‌هایی ساختاری با گیتار داشته‌اند. با گسترش تمدن اسلامی به غرب، این سازها به اندلس راه یافتند و در آن‌جا با فرهنگ اروپایی تلفیق شدند.</p>
+
+      <p><strong>نقش زریاب در تحول گیتار</strong><br>
+      زریاب (ابوالحسن علی ابن نافع)، موسیقیدان برجسته قرن نهم میلادی، از شاگردان اسحاق موصلی در بغداد بود. او پس از مهاجرت به اندلس، تأثیر شگرفی بر موسیقی غربی گذاشت: افزودن سیم پنجم به ساز عود، تأسیس مدرسه موسیقی در قرطبه و انتقال سبک‌های شرقی به غرب که زمینه‌ساز پیدایش گیتار فلامنکو شد.</p>
+
+      <p><strong>چرا گیتار مهم است؟</strong><br>
+      گیتار به دلیل تنوع سبک‌ها، امکان بیان فردی، دسترسی و نقش فرهنگی یکی از مهم‌ترین سازهای جهان است.</p>
+
+      <p><strong>بزرگان گیتار</strong><br>
+      آندرس سگوویا، پاکو دلوسیا، جیمی هندریکس، جان ویلیامز، اریک کلپتون — هر یک به شیوه‌ای در رشد و تنوع صدا و تکنیک گیتار مؤثر بوده‌اند.</p>
+    </section>
+
+    <!-- اساتید -->
     <section id="teachers">
-        <h2 class="section-title">اساتید ما</h2>
-        <div class="teachers-container">
-            <!-- استاد سهیل معنوی -->
-            <div class="teacher-card">
-                <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="استاد سهیل معنوی" class="teacher-img">
-                <div class="teacher-info">
-                    <h3 class="teacher-name">استاد سهیل معنوی</h3>
-                    <p class="teacher-specialty">مربی گیتار</p>
-                    <p class="teacher-description">استاد سهیل معنوی با بیش از ۱۵ سال سابقه تدریس گیتار، تخصص در سبک‌های کلاسیک، فلامنکو و پاپ دارد. ایشان فارغ‌التحصیل کنسرواتوار موسیقی تهران هستند.</p>
-                    <a href="#" class="teacher-gallery-btn" data-teacher="soheil">گالری آثار</a>
-                </div>
-            </div>
-            
-            <!-- استاد فریده عنایتی -->
-            <div class="teacher-card">
-                <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="استاد فریده عنایتی" class="teacher-img">
-                <div class="teacher-info">
-                    <h3 class="teacher-name">استاد فریده عنایتی</h3>
-                    <p class="teacher-specialty">مربی آواز</p>
-                    <p class="teacher-description">استاد فریده عنایتی با بیش از ۱۲ سال تجربه تدریس آواز، متخصص در سبک‌های کلاسیک، پاپ و سنتی ایرانی هستند. ایشان دارای مدرک کارشناسی ارشد موسیقی از دانشگاه هنر می‌باشند.</p>
-                    <a href="#" class="teacher-gallery-btn" data-teacher="farideh">گالری آثار</a>
-                </div>
-            </div>
-        </div>
+      <h2>اساتید برجسته</h2>
+      <div class="teachers" id="teachersList">
+        <!-- کارت‌های اساتید توسط JS ساخته میشوند -->
+      </div>
+    </section>
+
+    <!-- آثار هفته -->
+    <section id="works">
+      <h2>آثار هفته</h2>
+      <div id="worksGallery" class="gallery">
+        <!-- آثار هفته با JS پر می‌شود -->
+      </div>
     </section>
 
     <!-- گالری هنرجویان -->
-    <section id="gallery">
-        <h2 class="section-title">گالری هنرجویان</h2>
-        <div class="gallery-container">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="هنرجویان">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="هنرجویان">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="هنرجویان">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="هنرجویان">
-            </div>
-            <div class="gallery-item">
-                <video controls>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-guitarist-performing-on-stage-3925-large.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="gallery-item">
-                <video controls>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-singing-while-playing-guitar-3932-large.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
+    <section id="students">
+      <h2>گالری هنرجویان</h2>
+      <div id="studentGallery" class="gallery">
+        <!-- پر می‌شود -->
+      </div>
     </section>
 
-    <!-- تاریخچه گیتار -->
-    <section id="history">
-        <h2 class="section-title">تاریخچه و تحلیل ساز گیتار</h2>
-        <div class="history-content">
-            <div class="history-section">
-                <h3 class="history-title">🎸 پیدایش تاریخی گیتار</h3>
-                <p>ساز گیتار، یکی از پرنفوذترین سازهای زهی در تاریخ موسیقی، ریشه‌ای چند هزار ساله دارد. نمونه‌های اولیه آن در تمدن‌های باستانی مانند سومر، مصر، ایران و یونان دیده شده‌اند. در ایران، سازهایی چون تنبور و بربط شباهت‌هایی ساختاری با گیتار داشته‌اند. با گسترش تمدن اسلامی به غرب، این سازها به اندلس (جنوب اسپانیا) راه یافتند و در آن‌جا با فرهنگ اروپایی تلفیق شدند.</p>
-                <p>در قرون وسطی، سازهایی مانند "لوت" و "ویه‌ویلا" در اروپا رایج شدند که به‌تدریج به گیتار کلاسیک امروزی تبدیل شدند. واژه "guitarra" در اسپانیایی از "قیثاره" عربی گرفته شده و نشان‌دهنده پیوند فرهنگی شرق و غرب در شکل‌گیری این ساز است.</p>
-            </div>
-            
-            <div class="history-section">
-                <h3 class="history-title">🪕 نقش زریاب در تحول گیتار</h3>
-                <p>زریاب (ابوالحسن علی ابن نافع)، موسیقیدان برجسته قرن نهم میلادی، از شاگردان اسحاق موصلی در بغداد بود. او پس از مهاجرت به اندلس، تأثیر شگرفی بر موسیقی غربی گذاشت:</p>
-                <ul>
-                    <li>افزودن سیم پنجم به ساز عود، که بعدها در تکامل گیتار مؤثر بود.</li>
-                    <li>تأسیس نخستین مدرسه موسیقی در قرطبه، با آموزش نظام‌مند و نوآورانه.</li>
-                    <li>انتقال سبک‌های شرقی به غرب، که زمینه‌ساز پیدایش گیتار فلامنکو شد.</li>
-                </ul>
-                <p>زریاب نه‌تنها نوازنده‌ای ماهر، بلکه نظریه‌پردازی فرهنگی بود که موسیقی را با آداب، لباس، و حتی خوراک پیوند داد و به شکل‌گیری هویت هنری اندلس کمک کرد.</p>
-            </div>
-            
-            <div class="history-section">
-                <h3 class="history-title">🎶 چرا گیتار مهم است؟</h3>
-                <p>گیتار به دلایل زیر یکی از مهم‌ترین سازهای جهان محسوب می‌شود:</p>
-                <ul>
-                    <li>تنوع سبک‌ها: از کلاسیک تا راک، فلامنکو، جز، بلوز و پاپ، گیتار در قلب بسیاری از سبک‌های موسیقی قرار دارد.</li>
-                    <li>بیان فردی: امکان نواختن همزمان آکورد و ملودی، آن را به ابزاری برای بیان احساسات و خلاقیت تبدیل کرده است.</li>
-                    <li>دسترسی و محبوبیت: حمل آسان، قیمت مناسب و قابلیت یادگیری تدریجی باعث شده گیتار در سراسر جهان محبوب باشد.</li>
-                    <li>نقش فرهنگی: گیتار در موسیقی فولکلور، مذهبی، اعتراضی و عاشقانه حضور دارد و نماد آزادی هنری است.</li>
-                </ul>
-            </div>
-            
-            <div class="history-section">
-                <h3 class="history-title">🌟 بزرگان گیتار و اهمیت‌شان</h3>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background-color: var(--primary-color); color: white;">
-                                <th style="padding: 10px; text-align: right;">نام</th>
-                                <th style="padding: 10px; text-align: right;">سبک</th>
-                                <th style="padding: 10px; text-align: right;">دلیل اهمیت</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #ddd;">
-                                <td style="padding: 10px;">آندرس سگوویا</td>
-                                <td style="padding: 10px;">کلاسیک</td>
-                                <td style="padding: 10px;">بنیان‌گذار گیتار کلاسیک مدرن؛ ارتقاء جایگاه گیتار در موسیقی جدی</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #ddd;">
-                                <td style="padding: 10px;">پاکو دلوسیا</td>
-                                <td style="padding: 10px;">فلامنکو</td>
-                                <td style="padding: 10px;">تلفیق فلامنکو با جز و کلاسیک؛ نوآوری در تکنیک و بیان</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #ddd;">
-                                <td style="padding: 10px;">جیمی هندریکس</td>
-                                <td style="padding: 10px;">راک</td>
-                                <td style="padding: 10px;">انقلاب در صدای گیتار الکتریک؛ نماد خلاقیت و اعتراض</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #ddd;">
-                                <td style="padding: 10px;">جان ویلیامز</td>
-                                <td style="padding: 10px;">کلاسیک</td>
-                                <td style="padding: 10px;">نوازنده تکنیکی و مفسر آثار کلاسیک؛ گسترش رپرتوار گیتار</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 10px;">اریک کلپتون</td>
-                                <td style="padding: 10px;">بلوز/راک</td>
-                                <td style="padding: 10px;">تلفیق بلوز با راک؛ تأثیرگذار در فرهنگ موسیقی غربی</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <!-- پنل راهنمای مدیریت با توضیحات -->
+    <section id="admin" class="admin">
+      <h2>نحوه قرار دادن عکس/ویدیو — راهنمای سریع</h2>
+      <p class="muted">دو روش ساده:</p>
+      <ol>
+        <li>روش آسان (ویرایش فایل): این صفحه تک‌فایل است. برای افزودن عکس/ویدیو کافیست فایل‌ها را کنار همین <code>index.html</code> قرار بدید و سپس نام فایل‌ها را در آرایه‌های جاوااسکریپت پایین (بخش <code>DATA</code>) وارد کنید. برای مثال برای استاد سهیل:</li>
+        <pre style="white-space:pre-wrap;background:rgba(255,255,255,0.02);padding:8px;border-radius:6px">teachersData[0].media.push({type:'image', src:'soheil1.jpg'});</pre>
+        <li>روش آپلود مستقیم (هاست/FTP): فایل‌ها را در مسیر هاست آپلود کنید و آدرس آن‌ها (URL) را در آرایه‌ها قرار دهید.</li>
+      </ol>
+      <p class="muted">نکات:</p>
+      <ul>
+        <li>تصاویر بهتر است عرض حداقل 1200 پیکسل برای نمایش خوب روی موبایل باشد.</li>
+        <li>ویدیوها: فایل‌های mp4 با کدک H.264 بهترین سازگاری را دارند.</li>
+        <li>فرمتِ لوگو: اگر نام لوگو چیز دیگری است، تگ &lt;img id="siteLogo"&gt; را آپدیت کنید یا فایل را به logo.png تغییر دهید.</li>
+      </ul>
     </section>
 
-    <!-- تماس با ما -->
-    <section id="contact">
-        <h2 class="section-title">تماس با ما</h2>
-        <div class="history-content">
-            <p>برای اطلاعات بیشتر درباره دوره‌های آموزشی و ثبت نام، با ما در تماس باشید:</p>
-            <p><i class="fas fa-phone"></i> تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
-            <p><i class="fas fa-envelope"></i> ایمیل: info@avayezaryab.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> آدرس: تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
-        </div>
-    </section>
-
-    <!-- فوتر -->
     <footer>
-        <div class="footer-content">
-            <div class="logo">SISI</div>
-            <div class="logo-subtitle">MUSIC ACADEMY</div>
-            <p>آکادمی موسیقی آوای زریاب - مرکز تخصصی آموزش گیتار و آواز</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p class="copyright">تمامی حقوق برای آکادمی موسیقی آوای زریاب محفوظ است © ۱۴۰۳</p>
-        </div>
+      © آکادمی آوای زریاب — تمامی حقوق محفوظ است
     </footer>
+  </main>
+</div>
 
-    <!-- مدال برای نمایش گالری اساتید -->
-    <div id="teacherModal" class="modal">
-        <span class="modal-close">&times;</span>
-        <div class="modal-content">
-            <!-- محتوای مدال توسط جاوااسکریپت پر می‌شود -->
-        </div>
+<!-- Lightbox برای نمایش عکس/ویدئو -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <button class="close-light" onclick="closeLightbox(event)">بستن ✕</button>
+  <div class="inner" id="lightInner"></div>
+</div>
+
+<script>
+/* ========= داده‌ها (اینجا عکس/ویدیوها را قرار دهید) =========
+   هر استاد در آرایه teachersData به شکل زیر تعریف شده:
+   { id, name, role, avatar, bio, media:[ {type:'image'|'video', src:'path-or-url', title:''}, ... ] }
+   برای افزودن تصویر/ویدیو، فقط آرایه media را ویرایش کنید.
+   مثال سریع:
+   teachersData[0].media.push({type:'image', src:'soheil-new.jpg', title:'تمرین 01'});
+*/
+const teachersData = [
+  {
+    id:'soheil',
+    name:'استاد سهیل معنوی',
+    role:'مربی گیتار',
+    avatar:'avatar_soheil.jpg', // قرار دهید یا مسیر URL
+    bio:'نوازنده و مدرس گیتار با تجربهٔ ده‌ها کنسرت و هنرجوی موفق. تمرکز بر تکنیک، تئوری و اجرا.',
+    media:[
+      // نمونه‌ها را با فایل‌های خودتان جایگزین کنید
+      {type:'image', src:'soheil1.jpg', title:'سنسور اجرا 1'},
+      {type:'image', src:'soheil2.jpg', title:'تمرین آکورد'},
+      {type:'video', src:'soheil1.mp4', title:'درس گیتار: پایه'},
+    ]
+  },
+  {
+    id:'farideh',
+    name:'استاد فریده عنایتی',
+    role:'مربی آواز',
+    avatar:'avatar_farideh.jpg',
+    bio:'مربی آواز کلاسیک و سنتی با رویکرد تلفیقی و تمرکز بر تکنیک تنفسی و بیان.',
+    media:[
+      {type:'image', src:'farideh1.jpg', title:'آموزش نفس‌گیری'},
+      {type:'video', src:'farideh1.mp4', title:'تمرین آواز'},
+    ]
+  }
+];
+
+/* آثار هفته و گالری هنرجویان (نمونه — ویرایش کنید) */
+const worksData = [
+  {type:'image', src:'work1.jpg', title:'اثر هفته 1'},
+  {type:'video', src:'work2.mp4', title:'اجرای هنرجو'},
+];
+
+const studentsData = [
+  {type:'image', src:'student1.jpg', title:'دانش‌آموز: علی'},
+  {type:'image', src:'student2.jpg', title:'دانش‌آموز: سارا'},
+];
+
+/* ========== توابع DOM برای ایجاد کارت‌ها و گالری‌ها ========== */
+
+function createTeacherCard(t){
+  const div = document.createElement('div');
+  div.className = 'teacher';
+  div.innerHTML = `
+    <div class="avatar">
+      <img src="${t.avatar}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
     </div>
+    <div class="meta">
+      <h3>${t.name}</h3>
+      <small>${t.role}</small>
+      <p style="margin-top:6px;color:#dfeaf6;font-size:13px">${t.bio}</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="open-profile" onclick="openProfile('${t.id}')">نمایش پروفایل</button>
+    </div>
+  `;
+  return div;
+}
 
-    <script>
-        // اسکرول با صدای گیتار
-        document.addEventListener('DOMContentLoaded', function() {
-            // ایجاد صدا برای اسکرول
-            const guitarSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-guitar-notification-2318.mp3');
-            guitarSound.volume = 0.3;
-            
-            let lastScrollTop = 0;
-            let scrollTimeout;
-            
-            window.addEventListener('scroll', function() {
-                clearTimeout(scrollTimeout);
-                
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // فقط وقتی کاربر به پایین اسکرول می‌کند صدا پخش شود
-                if (scrollTop > lastScrollTop) {
-                    guitarSound.currentTime = 0;
-                    guitarSound.play().catch(e => console.log("صدا پخش نشد: ", e));
-                }
-                
-                lastScrollTop = scrollTop;
-                
-                // توقف صدا بعد از 100ms
-                scrollTimeout = setTimeout(() => {
-                    guitarSound.pause();
-                    guitarSound.currentTime = 0;
-                }, 100);
-            });
-            
-            // مدیریت مدال گالری اساتید
-            const teacherButtons = document.querySelectorAll('.teacher-gallery-btn');
-            const modal = document.getElementById('teacherModal');
-            const modalContent = modal.querySelector('.modal-content');
-            const closeModal = modal.querySelector('.modal-close');
-            
-            teacherButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const teacher = this.getAttribute('data-teacher');
-                    
-                    // محتوای مدال بر اساس استاد انتخاب شده
-                    if (teacher === 'soheil') {
-                        modalContent.innerHTML = `
-                            <h3 style="color: white; text-align: center; margin-bottom: 20px;">گالری آثار استاد سهیل معنوی</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
-                                <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" style="width: 100%; border-radius: 8px;">
-                                <img src="https://images.unsplash.com/photo-1552422535-458c1c3e3ac8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" style="width: 100%; border-radius: 8px;">
-                                <video controls style="width: 100%; border-radius: 8px;">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-guitarist-performing-on-stage-3925-large.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        `;
-                    } else if (teacher === 'farideh') {
-                        modalContent.innerHTML = `
-                            <h3 style="color: white; text-align: center; margin-bottom: 20px;">گالری آثار استاد فریده عنایتی</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
-                                <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" style="width: 100%; border-radius: 8px;">
-                                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" style="width: 100%; border-radius: 8px;">
-                                <video controls style="width: 100%; border-radius: 8px;">
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-singing-while-playing-guitar-3932-large.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        `;
-                    }
-                    
-                    modal.style.display = 'flex';
-                });
-            });
-            
-            // بستن مدال
-            closeModal.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            // بستن مدال با کلیک خارج از آن
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // انیمیشن برای عناصر هنگام اسکرول
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const fadeInOnScroll = function() {
-                fadeElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.classList.add('fade-in');
-                    }
-                });
-            };
-            
-            // فراخوانی اولیه
-            fadeInOnScroll();
-            
-            // فراخوانی هنگام اسکرول
-            window.addEventListener('scroll', fadeInOnScroll);
-        });
-    </script>
+function populateTeachers(){
+  const box = document.getElementById('teachersList');
+  box.innerHTML='';
+  teachersData.forEach(t => box.appendChild(createTeacherCard(t)));
+}
+
+function openProfile(id){
+  const t = teachersData.find(x=>x.id===id);
+  if(!t) return;
+  // اسکرول به بخش داخل، سپس نمایش یک بخش موقتی شامل گالری
+  const sec = document.createElement('section');
+  sec.style.marginTop='12px';
+  sec.innerHTML = `
+    <h2>${t.name} — ${t.role}</h2>
+    <p>${t.bio}</p>
+    <div class="gallery" id="gallery-${t.id}"></div>
+  `;
+  document.getElementById('teachers').appendChild(sec);
+  const gallery = document.getElementById(`gallery-${t.id}`);
+  t.media.forEach((m,idx) => {
+    const el = document.createElement('div');
+    el.className='thumb';
+    if(m.type==='image'){
+      el.style.backgroundImage = "url('"+m.src+"')";
+      el.innerHTML = `<div class="play">عکس</div>`;
+      el.onclick = ()=>openLightboxImage(m.src);
+    } else {
+      el.style.backgroundImage = "linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5))";
+      el.innerHTML = `<div style="padding:8px;color:#dfeaf6">${m.title||'ویدئو'}</div><div class="play">▶</div>`;
+      el.onclick = ()=>openLightboxVideo(m.src);
+    }
+    gallery.appendChild(el);
+  });
+  // اسکرول به پروفایل جدید
+  sec.scrollIntoView({behavior:'smooth'});
+}
+
+/* populate works & students */
+function populateWorks(){
+  const box = document.getElementById('worksGallery');
+  box.innerHTML='';
+  worksData.forEach(m=>{
+    const el = document.createElement('div'); el.className='thumb';
+    if(m.type==='image'){ el.style.backgroundImage = "url('"+m.src+"')"; el.onclick=()=>openLightboxImage(m.src); }
+    else { el.style.backgroundImage="linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5))"; el.innerHTML=`<div style="padding:8px">${m.title||'ویدئو'}</div><div class="play">▶</div>`; el.onclick=()=>openLightboxVideo(m.src); }
+    box.appendChild(el);
+  });
+}
+function populateStudents(){
+  const box = document.getElementById('studentGallery');
+  box.innerHTML='';
+  studentsData.forEach(m=>{
+    const el = document.createElement('div'); el.className='thumb';
+    if(m.type==='image'){ el.style.backgroundImage = "url('"+m.src+"')"; el.onclick=()=>openLightboxImage(m.src); }
+    else { el.style.backgroundImage="linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5))"; el.innerHTML=`<div style="padding:8px">${m.title||'ویدئو'}</div><div class="play">▶</div>`; el.onclick=()=>openLightboxVideo(m.src); }
+    box.appendChild(el);
+  });
+}
+
+/* Lightbox */
+function openLightboxImage(src){
+  const lb = document.getElementById('lightbox');
+  const inner = document.getElementById('lightInner');
+  inner.innerHTML = `<img src="${src}" alt="" onerror="this.style.display='none'">`;
+  lb.classList.add('active');
+}
+function openLightboxVideo(src){
+  const lb = document.getElementById('lightbox');
+  const inner = document.getElementById('lightInner');
+  inner.innerHTML = `<video controls playsinline src="${src}"></video>`;
+  lb.classList.add('active');
+}
+function closeLightbox(e){
+  if(e) e.stopPropagation();
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('active');
+  document.getElementById('lightInner').innerHTML='';
+}
+
+/* scrollToSection helper */
+function scrollToSection(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ========== صدای نت هنگام اسکرول (WebAudio) ===========
+   از WebAudio برای تولید صدای شبیه "پلاکی" گیتار استفاده می‌کنیم.
+   این روش نیازی به فایل صوتی ندارد و خودِ صفحه صدا را تولید می‌کند.
+*/
+let audioCtx, masterGain;
+function initAudio(){
+  try{
+    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.08;
+    masterGain.connect(audioCtx.destination);
+  }catch(e){
+    console.warn('WebAudio در این مرورگر پشتیبانی نمی‌شود.');
+  }
+}
+
+/* تولید نت پلاک (ساده): یک نویز کوتاه + فیلتر lowpass به همراه انولوپ */
+function pluck(freq){
+  if(!audioCtx) initAudio();
+  if(!audioCtx) return;
+  const now = audioCtx.currentTime;
+  // نویز سفید کوتاه
+  const bufferSize = audioCtx.sampleRate * 0.2; // 200ms
+  const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = noiseBuffer.getChannelData(0);
+  for(let i=0;i<bufferSize;i++){
+    data[i] = (Math.random()*2-1) * Math.exp(-i/bufferSize*3);
+  }
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = noiseBuffer;
+
+  // فیلتر برای شکل‌دهی صدا (شبیه سیم)
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = freq*4; // رابطه تجربی
+  filter.Q.value = 6;
+
+  // لرزش سینوسی پایه برای تاکید فرکانس
+  const osc = audioCtx.createOscillator();
+  osc.type = 'triangle';
+  osc.frequency.value = freq;
+
+  const oscGain = audioCtx.createGain();
+  oscGain.gain.value = 0.0025; // خیلی کم، برای رنگ‌دهی
+
+  // Envelope برای نویز (ضربه)
+  const g = audioCtx.createGain();
+  g.gain.setValueAtTime(0.0001, now);
+  g.gain.exponentialRampToValueAtTime(1.0, now + 0.005);
+  g.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+
+  noise.connect(filter);
+  filter.connect(g);
+  g.connect(masterGain);
+
+  osc.connect(oscGain);
+  oscGain.connect(masterGain);
+
+  noise.start(now);
+  noise.stop(now + 1.5);
+  osc.start(now);
+  osc.stop(now + 1.5);
+}
+
+/* هنگام اسکرول: نت پخش کن. برای جلوگیری از پخش مکرر زیاد، throttling */
+let lastScroll = 0;
+let lastY = 0;
+window.addEventListener('scroll', function(e){
+  const now = performance.now();
+  if(now - lastScroll < 120) return; // حداقل 120ms بین صداها
+  lastScroll = now;
+  const y = window.scrollY || document.documentElement.scrollTop;
+  const dy = Math.abs(y - lastY);
+  lastY = y;
+  // فركانس برحسب سرعت اسكرول: بازهٔ 130Hz تا 520Hz
+  const base = 130;
+  const freq = Math.min(520, base + Math.min(600, dy*2));
+  // resume audio ctx on iOS/Chrome after user gesture
+  if(audioCtx && audioCtx.state === 'suspended'){
+    audioCtx.resume().then(()=>pluck(freq)).catch(()=>pluck(freq));
+  } else {
+    pluck(freq);
+  }
+}, {passive:true});
+
+/* ========== init صفحه ========== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  populateTeachers();
+  populateWorks();
+  populateStudents();
+  // تلاش برای init audio پس از اولین تعامل لمسی (بعضی مرورگرها نیاز به gesture دارند)
+  const resumeOnce = ()=>{ initAudio(); document.removeEventListener('touchstart', resumeOnce); document.removeEventListener('click', resumeOnce); };
+  document.addEventListener('touchstart', resumeOnce, {passive:true});
+  document.addEventListener('click', resumeOnce, {passive:true});
+});
+
+/* ========== توضیحات برای ویرایش سریع (برای شما) ==========
+1) جایگذاری عکس/ویدئو:
+   - فایل‌ها را کنار این index.html کپی کنید (یا آدرس URL کامل قرار دهید).
+   - سپس در ابتدای فایل داخل آرایه‌های teachersData / worksData / studentsData نام فایل را اضافه کنید.
+   مثال:
+   teachersData[0].media.push({type:'image', src:'soheil-new.jpg', title:'جلسه 05'});
+
+2) تغییر لوگو:
+   - فایل لوگو را با نام logo.png ذخیره کنید.
+   - یا src تگ img#siteLogo را به مسیر جدید تغییر دهید.
+
+3) اضافه/حذف استاد:
+   - یک آبجکت جدید با فرمتی که در بالای کد دیدید اضافه کنید و populateTeachers دوباره اجرا می‌شود (در حال حاضر تنها زمان بارگذاری صفحه اجرا می‌شود؛ برای اعمال داینامیک می‌توانید بعد از ویرایش دستی صفحه آن را رفرش کنید).
+
+4) بهینه‌سازی ویدئو: ویدئوها را با فرمت mp4 و H.264 ذخیره کنید تا در موبایل بهتر اجرا شوند.
+
+5) استایل یا رنگ‌بندی را می‌خواهی تغییر بدی؟ مقادیر :root (ابتدای استایل) را ویرایش کن.
+
+تمام — حالا سایت شما آماده‌ست!
+*/
+</script>
 </body>
 </html>
